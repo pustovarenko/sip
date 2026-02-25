@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отделка СИП-домов - Главная</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Swiper CSS для слайдера -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --primary-green: #2ec164;
+            --secondary-yellow: #f2da7b;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding-top: 80px;
+            background-color: #ffffff;
+        }
+
+        .bg-primary { background-color: var(--primary-green); }
+        .text-primary { color: var(--primary-green); }
+        .border-primary { border-color: var(--primary-green); }
+        
+        .nav-link:hover {
+            color: var(--primary-green) !important;
+        }
+        
+        .burger-line {
+            transition: all 0.3s ease-in-out;
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #1f2937;
+            margin: 5px 0;
+        }
+        
+        .open .line1 { transform: translateY(7px) rotate(45deg); }
+        .open .line2 { opacity: 0; }
+        .open .line3 { transform: translateY(-7px) rotate(-45deg); }
+
+        #mobile-menu {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-120%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .max-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        /* Кастомные стили Swiper */
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--primary-green);
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--primary-green);
+        }
+
+        .problem-card, .value-card, .price-card, .service-card, .review-card, .team-card, .faq-item {
+            transition: all 0.3s ease;
+        }
+        .problem-card:hover, .value-card:hover, .service-card:hover, .team-card:hover {
+            transform: translateY(-5px);
+        }
+        .price-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* Стили для аккордеона FAQ */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .faq-item.active .faq-content {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: var(--primary-green);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center z-50">
+                <a href="tel:+79999999999" class="flex items-center text-gray-800 font-bold text-base sm:text-lg">
+                    <i class="fa-solid fa-phone text-primary mr-2"></i>
+                    <span class="whitespace-nowrap">+7 (999) 999-99-99</span>
+                </a>
+            </div>
+
+            <nav class="hidden lg:flex space-x-6 items-center">
+                <a href="#cost" class="nav-link text-gray-600 transition font-medium whitespace-nowrap">Стоимость</a>
+                <a href="#works" class="nav-link text-gray-600 transition font-medium whitespace-nowrap">Наши работы</a>
+                <a href="#reviews" class="nav-link text-gray-600 transition font-medium whitespace-nowrap">Отзывы</a>
+                <a href="#guarantee" class="nav-link text-gray-600 transition font-medium whitespace-nowrap">Гарантия</a>
+                <a href="#contacts" class="nav-link text-gray-600 transition font-medium whitespace-nowrap">Контакты</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center space-x-6">
+                <div class="flex space-x-4 items-center">
+                    <a href="#" class="text-blue-400 hover:scale-110 transition text-2xl"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="hover:scale-110 transition flex items-center justify-center" title="Max">
+                        <img src="image_332700.jpg" alt="Max" class="max-logo" onerror="this.src='https://via.placeholder.com/24?text=M'">
+                    </a>
+                    <a href="#" class="text-green-500 hover:scale-110 transition text-2xl"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <button class="bg-primary text-white px-6 py-2.5 rounded-full font-bold hover:bg-opacity-90 transition shadow-sm whitespace-nowrap">
+                    Заказать звонок
+                </button>
+            </div>
+
+            <button id="burger-btn" class="lg:hidden p-2 focus:outline-none z-50">
+                <span class="burger-line line1"></span>
+                <span class="burger-line line2"></span>
+                <span class="burger-line line3"></span>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-auto bg-white shadow-2xl lg:hidden pt-20 pb-8 z-40 border-t">
+            <div class="flex flex-col p-6 space-y-5 text-center bg-white">
+                <a href="#cost" class="text-xl font-semibold text-gray-800 hover:text-primary transition">Стоимость</a>
+                <a href="#works" class="text-xl font-semibold text-gray-800 hover:text-primary transition">Наши работы</a>
+                <a href="#reviews" class="text-xl font-semibold text-gray-800 hover:text-primary transition">Отзывы</a>
+                <a href="#guarantee" class="text-xl font-semibold text-gray-800 hover:text-primary transition">Гарантия</a>
+                <a href="#contacts" class="text-xl font-semibold text-gray-800 hover:text-primary transition">Контакты</a>
+                <div class="w-full h-px bg-gray-100 my-4"></div>
+                <div class="flex justify-center space-x-8 items-center">
+                    <a href="#" class="text-blue-400 text-3xl"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="flex items-center justify-center">
+                        <img src="image_332700.jpg" alt="Max" class="w-8 h-8 object-contain rounded-md" onerror="this.src='https://via.placeholder.com/32?text=M'">
+                    </a>
+                    <a href="#" class="text-green-500 text-3xl"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <button class="bg-primary text-white w-full py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition mt-4">
+                    Заказать звонок
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero-section bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 py-12 lg:py-20 flex flex-col lg:flex-row items-center">
+            <div class="w-full lg:w-3/5 text-center lg:text-left">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-6">
+                    Внутренняя отделка <br class="hidden md:block"> СИП-домов
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+                    Сделаем ваш дом тихим, пожаробезопасным <br class="hidden sm:block"> и защищенным от гниения
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="flex items-start text-left space-x-4">
+                        <div class="bg-primary bg-opacity-10 p-2 rounded-lg mt-1"><i class="fa-solid fa-volume-xmark text-primary text-xl"></i></div>
+                        <div><h3 class="font-bold text-gray-800 leading-tight">Тишина, как в каменном доме</h3><p class="text-sm text-gray-500 mt-1">Больше не услышите шаги и шум за стеной</p></div>
+                    </div>
+                    <div class="flex items-start text-left space-x-4">
+                        <div class="bg-primary bg-opacity-10 p-2 rounded-lg mt-1"><i class="fa-solid fa-droplet-slash text-primary text-xl"></i></div>
+                        <div><h3 class="font-bold text-gray-800 leading-tight">0% влаги и плесени</h3><p class="text-sm text-gray-500 mt-1">Герметизируем стыки для защиты панелей на десятки лет</p></div>
+                    </div>
+                    <div class="flex items-start text-left space-x-4">
+                        <div class="bg-primary bg-opacity-10 p-2 rounded-lg mt-1"><i class="fa-solid fa-shield-halved text-primary text-xl"></i></div>
+                        <div><h3 class="font-bold text-gray-800 leading-tight">100% пожаробезопасность</h3><p class="text-sm text-gray-500 mt-1">Негорючая обшивка и проводка строго по ГОСТу</p></div>
+                    </div>
+                    <div class="flex items-start text-left space-x-4">
+                        <div class="bg-primary bg-opacity-10 p-2 rounded-lg mt-1"><i class="fa-solid fa-piggy-bank text-primary text-xl"></i></div>
+                        <div><h3 class="font-bold text-gray-800 leading-tight">15% экономии на материалах</h3><p class="text-sm text-gray-500 mt-1">Закупки по оптовым ценам без переплат магазинам</p></div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+                    <button class="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl shadow-green-200 w-full sm:w-auto">Узнать стоимость ремонта</button>
+                </div>
+            </div>
+            <div class="hidden lg:block w-2/5 relative"><div class="w-full h-[500px] bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200 flex items-center justify-center"><span class="text-gray-300 italic">Здесь будет ваше фото</span></div></div>
+        </div>
+    </section>
+
+    <!-- ИДЕНТИФИКАЦИЯ -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">СИП-дом — это не квартира. <br class="hidden sm:block text-primary"> Обычный ремонт может его испортить</h2>
+                <p class="text-lg md:text-xl text-gray-600 font-medium">Важно нанять бригаду, которая специализируется именно на СИП-домах. <br class="hidden md:block"> Обычный подход к ремонту приведет к 3 проблемам:</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 problem-card">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 text-2xl"><i class="fa-solid fa-ear-listen"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">1. Постоянное эхо и шум</h3>
+                    <p class="text-gray-600 leading-relaxed">В СИП-доме каждое слово и шаги на втором этаже слышны во всем доме. Обычная отделка в один слой не решит проблему. Вам будет казаться, что стен между комнатами просто нет.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 problem-card">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-6 text-2xl"><i class="fa-solid fa-bacteria"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">2. Риск гниения изнутри</h3>
+                    <p class="text-gray-600 leading-relaxed">Главный враг СИП-панели - влага в стыках. Обычные строители не знают, как правильно герметизировать. Через 2–3 года появится запах сырости и плесень, разрушающая дом.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 problem-card">
+                    <div class="w-14 h-14 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center mb-6 text-2xl"><i class="fa-solid fa-fire-extinguisher"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">3. Пожарная опасность</h3>
+                    <p class="text-gray-600 leading-relaxed">Скрытая проводка без специальной защиты - это прямая угроза. Мы знаем, как смонтировать кабель по ГОСТу, чтобы ваша семья была в безопасности.</p>
+                </div>
+            </div>
+            <div class="text-center max-w-3xl mx-auto">
+                <p class="text-xl font-bold text-gray-800 mb-10 leading-relaxed">Мы специализируемся именно на СИП-технологии. Мы знаем, как сделать такой дом тихим, пожаробезопасным и долговечным, не раздувая бюджет на материалы.</p>
+                <button class="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl shadow-green-200">Узнать стоимость ремонта</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЗА ЧТО ВЫ ПЛАТИТЕ -->
+    <section id="cost" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16"><h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">За что вы платите</h2><p class="text-xl text-gray-600">Что входит в стоимость отделки вашего СИП-дома</p></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 1</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Тишина и уют в каждой комнате</h3><p class="text-gray-600 text-sm leading-relaxed">Двойная обшивка стен гасит эхо и шум шагов. Больше нет ощущения «картонных перегородок»</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 2</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Пожарная безопасность «под ключ»</h3><p class="text-gray-600 text-sm leading-relaxed">Используем только негорючие плиты и скрытый монтаж проводки строго по ГОСТу. Ваша семья под надежной защитой</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 3</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Защита дома от гниения на 50 лет</h3><p class="text-gray-600 text-sm leading-relaxed">0% влаги и плесени внутри стен — ваш дом сохраняет прочность десятилетиями</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 4</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Идеально ровные стены под любую отделку</h3><p class="text-gray-600 text-sm leading-relaxed">Обои не разойдутся, а встроенная мебель встанет без щелей и перекосов</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 5</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Экономия на отоплении до 30%</h3><p class="text-gray-600 text-sm leading-relaxed">Прокладываем коммуникации без нарушения теплового контура. Дом будет сохранять тепло</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 6</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Цена не вырастет ни на рубль</h3><p class="text-gray-600 text-sm leading-relaxed">Фиксируем стоимость работ и материалов в договоре. Вы застрахованы от инфляции и любых доплат</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 7</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Освобождение вашего времени</h3><p class="text-gray-600 text-sm leading-relaxed">Сами закупаем и привозим материалы по оптовым ценам. Вы экономите до 15% бюджета</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 8</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Здоровый микроклимат</h3><p class="text-gray-600 text-sm leading-relaxed">Используем чистые материалы. В доме нет запахов, он безопасен для детей и животных с первого дня</p></div>
+                <div class="value-card border border-gray-100 p-8 rounded-3xl bg-gray-50 flex flex-col items-center text-center"><div class="w-full h-32 bg-gray-200 rounded-2xl mb-6 flex items-center justify-center overflow-hidden"><span class="text-gray-400 italic">Картинка 9</span></div><h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">Заезд в чистый дом сразу после сдачи</h3><p class="text-gray-600 text-sm leading-relaxed">Делаем профессиональную уборку. Вам остается только занести мебель и наслаждаться своим домом</p></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="price-card bg-white border-2 border-gray-100 p-10 rounded-[40px] text-center flex flex-col"><h4 class="text-2xl font-black text-gray-900 mb-4 uppercase tracking-wider leading-tight">Бюджетная отделка</h4><div class="mb-6"><p class="text-gray-500 text-sm min-h-[40px]">Все самое необходимое для жизни</p></div><div class="mb-8"><div class="text-2xl font-black text-primary">36 800 <span class="text-sm font-normal text-gray-400">руб./м²</span></div></div><button class="mt-auto bg-primary text-white px-6 py-4 rounded-full font-bold hover:scale-105 transition shadow-lg shadow-green-100">Бесплатная консультация</button></div>
+                <div class="price-card bg-white border-2 border-primary p-10 rounded-[40px] text-center flex flex-col relative"><div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-6 py-2 rounded-full uppercase tracking-widest shadow-lg">Хит продаж</div><h4 class="text-2xl font-black text-gray-900 mb-4 uppercase tracking-wider leading-tight">Стандартная отделка</h4><div class="mb-6"><p class="text-gray-500 text-sm min-h-[40px]">Полноценное проживание в комфорте и уюте</p></div><div class="mb-8"><div class="text-2xl font-black text-primary">54 600 <span class="text-sm font-normal text-gray-400">руб./м²</span></div></div><button class="mt-auto bg-primary text-white px-6 py-4 rounded-full font-bold hover:scale-105 transition shadow-lg shadow-green-100">Бесплатная консультация</button></div>
+                <div class="price-card bg-white border-2 border-gray-100 p-10 rounded-[40px] text-center flex flex-col"><h4 class="text-2xl font-black text-gray-900 mb-4 uppercase tracking-wider leading-tight">VIP-дизайн</h4><div class="mb-6"><p class="text-gray-500 text-sm min-h-[40px]">Эксклюзивные решения под ваши запросы</p></div><div class="mb-8"><div class="text-base font-bold text-gray-800 leading-tight">Стоимость обсуждается индивидуально</div></div><button class="mt-auto bg-primary text-white px-6 py-4 rounded-full font-bold hover:scale-105 transition shadow-lg shadow-green-100">Бесплатная консультация</button></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НАШИ РАБОТЫ -->
+    <section id="works" class="py-16 lg:py-24 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto mb-12 lg:mb-16"><h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">Наши работы: от коробки <br class="hidden sm:block"> до тихого и уютного дома</h2><p class="text-lg md:text-xl text-gray-600 font-medium">Мы не просто клеим обои. Мы создаём инженерную защиту вашего жилья</p></div>
+            <div class="relative px-0 lg:px-12 mb-16">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide h-auto">
+                            <div class="bg-white rounded-[32px] overflow-hidden shadow-xl border border-gray-100 flex flex-col lg:flex-row h-full">
+                                <div class="w-full lg:w-1/2 h-64 lg:h-auto bg-gray-200 flex items-center justify-center"><span class="text-gray-400 italic">Фото объекта 1</span></div>
+                                <div class="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                                    <h3 class="text-2xl lg:text-3xl font-black text-gray-900 mb-6">Дом 120 м²</h3>
+                                    <div class="space-y-6">
+                                        <div class="flex items-start"><div class="text-primary mr-4 text-xl mt-1"><i class="fa-solid fa-calendar-check"></i></div><div><span class="block text-sm text-gray-400 uppercase font-bold tracking-wider">Срок выполнения</span><p class="text-gray-800 font-bold text-lg">28 дней</p></div></div>
+                                        <div class="flex items-start"><div class="text-primary mr-4 text-xl mt-1"><i class="fa-solid fa-box-open"></i></div><div><span class="block text-sm text-gray-400 uppercase font-bold tracking-wider">Материалы</span><p class="text-gray-800 font-medium">Закупили со скидкой 15% <span class="text-primary font-bold">(экономия клиента 84 000 руб.)</span></p></div></div>
+                                        <div class="flex items-start"><div class="text-primary mr-4 text-xl mt-1"><i class="fa-solid fa-house-shield"></i></div><div><span class="block text-sm text-gray-400 uppercase font-bold tracking-wider">Результат</span><p class="text-gray-600 leading-relaxed italic">Дом прошел проверку тепловизором: потери тепла снижены на <span class="text-gray-900 font-bold">20%</span> за счет правильной изоляции швов</p></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next shadow-lg"></div><div class="swiper-button-prev shadow-lg"></div><div class="swiper-pagination mt-8 relative"></div>
+                </div>
+            </div>
+            <div class="text-center"><button class="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl shadow-green-200 w-full sm:w-auto">Узнать стоимость ремонта</button></div>
+        </div>
+    </section>
+
+    <!-- УСЛОВИЯ И СЕРВИС -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto mb-16"><h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">Мы превращаем коробку в уютный дом, <br class="hidden sm:block"> пока вы отдыхаете</h2><p class="text-lg md:text-xl text-gray-600 font-medium">Берем на себя всю рутину. Ваше участие минимальное</p></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="service-card p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col items-start relative overflow-hidden"><span class="absolute top-4 right-6 text-6xl font-black text-gray-200 opacity-30 select-none">1</span><div class="w-14 h-14 bg-primary bg-opacity-10 text-primary rounded-2xl flex items-center justify-center mb-8 text-2xl"><i class="fa-solid fa-truck-ramp-box"></i></div><h3 class="text-xl font-bold text-gray-900 mb-4">Закупаем материалы</h3><p class="text-gray-600 leading-relaxed">Сами подбираем, закупаем и привозим материалы. Благодаря нашим партнерским скидкам вы экономите до 15% бюджета, не посещая строительные рынки.</p></div>
+                <div class="service-card p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col items-start relative overflow-hidden"><span class="absolute top-4 right-6 text-6xl font-black text-gray-200 opacity-30 select-none">2</span><div class="w-14 h-14 bg-primary bg-opacity-10 text-primary rounded-2xl flex items-center justify-center mb-8 text-2xl"><i class="fa-solid fa-mug-hot"></i></div><h3 class="text-xl font-bold text-gray-900 mb-4">Ваше участие не требуется</h3><p class="text-gray-600 leading-relaxed">Вам не нужно быть на объекте. Мы сами организуем быт рабочих, вывоз мусора и логистику. Вы продолжаете заниматься своими делами, пока дом преображается.</p></div>
+                <div class="service-card p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col items-start relative overflow-hidden"><span class="absolute top-4 right-6 text-6xl font-black text-gray-200 opacity-30 select-none">3</span><div class="w-14 h-14 bg-primary bg-opacity-10 text-primary rounded-2xl flex items-center justify-center mb-8 text-2xl"><i class="fa-solid fa-mobile-screen-button"></i></div><h3 class="text-xl font-bold text-gray-900 mb-4">Постоянные отчёты</h3><p class="text-gray-600 leading-relaxed">Присылаем фото- и видеоотчёты о проделанной работе. Вы всё видите в реальном времени в своём телефоне.</p></div>
+                <div class="service-card p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col items-start relative overflow-hidden"><span class="absolute top-4 right-6 text-6xl font-black text-gray-200 opacity-30 select-none">4</span><div class="w-14 h-14 bg-primary bg-opacity-10 text-primary rounded-2xl flex items-center justify-center mb-8 text-2xl"><i class="fa-solid fa-house-circle-check"></i></div><h3 class="text-xl font-bold text-gray-900 mb-4">Специализируемся на СИП-домах</h3><p class="text-gray-600 leading-relaxed">Это позволяет нам работать быстрее любой «универсальной» бригады без потери качества и нарушения техпроцесса.</p></div>
+                <div class="service-card p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col items-start relative overflow-hidden"><span class="absolute top-4 right-6 text-6xl font-black text-gray-200 opacity-30 select-none">5</span><div class="w-14 h-14 bg-primary bg-opacity-10 text-primary rounded-2xl flex items-center justify-center mb-8 text-2xl"><i class="fa-solid fa-sparkles"></i></div><h3 class="text-xl font-bold text-gray-900 mb-4">Чистая работа</h3><p class="text-gray-600 leading-relaxed">Убираемся после завершения работ. Вы заходите в чистый дом, где пахнет свежестью, а не цементной пылью.</p></div>
+            </div>
+            <div class="text-center"><button class="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl shadow-green-200 w-full sm:w-auto">Узнать стоимость ремонта</button></div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section id="reviews" class="py-16 lg:py-24 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto mb-12 lg:mb-16"><h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">Истории тех, кто уже переехал <br class="hidden sm:block"> в свой СИП-дом</h2><p class="text-lg md:text-xl text-gray-600 font-medium">Эти люди уже забыли про эхо, шум за стеной и страх за сохранность своего дома</p></div>
+            <div class="relative mb-16">
+                <div class="swiper reviewsSwiper overflow-visible">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide h-auto"><div class="review-card bg-white p-2 rounded-3xl shadow-sm border border-gray-100 h-full flex items-center justify-center min-h-[400px]"><span class="text-gray-300 italic text-center px-6">Скриншот отзыва клиента 1</span></div></div>
+                        <div class="swiper-slide h-auto"><div class="review-card bg-white p-2 rounded-3xl shadow-sm border border-gray-100 h-full flex items-center justify-center min-h-[400px]"><span class="text-gray-300 italic text-center px-6">Скриншот отзыва клиента 2</span></div></div>
+                        <div class="swiper-slide h-auto"><div class="review-card bg-white p-2 rounded-3xl shadow-sm border border-gray-100 h-full flex items-center justify-center min-h-[400px]"><span class="text-gray-300 italic text-center px-6">Скриншот отзыва клиента 3</span></div></div>
+                        <div class="swiper-slide h-auto"><div class="review-card bg-white p-2 rounded-3xl shadow-sm border border-gray-100 h-full flex items-center justify-center min-h-[400px]"><span class="text-gray-300 italic text-center px-6">Скриншот отзыва клиента 4</span></div></div>
+                    </div>
+                </div>
+                <div class="swiper-button-next reviews-next !right-0"></div><div class="swiper-button-prev reviews-prev !left-0"></div>
+            </div>
+            <div class="text-center"><button class="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl shadow-green-200 w-full sm:w-auto">Узнать стоимость ремонта</button></div>
+        </div>
+    </section>
+
+    <!-- ГАРАНТИЯ И КОМАНДА -->
+    <section id="guarantee" class="py-16 lg:py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-24">
+                <div class="w-full lg:w-3/5">
+                    <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight text-center lg:text-left">Тройная гарантия по договору</h2>
+                    <p class="text-lg md:text-xl text-gray-600 font-medium mb-12 text-center lg:text-left">Мы не просто делаем ремонт, а несём юридическую ответственность за каждый рубль в смете</p>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-5"><div class="w-12 h-12 bg-primary bg-opacity-10 text-primary rounded-xl flex items-center justify-center flex-shrink-0 text-xl"><i class="fa-solid fa-file-signature"></i></div><div><h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight text-left">1. Договор с фиксированной ценой</h3><p class="text-gray-600 leading-relaxed text-left">Сумма в смете окончательная. Стоимость ремонта для вас не изменится ни на копейку.</p></div></div>
+                        <div class="flex items-start gap-5"><div class="w-12 h-12 bg-primary bg-opacity-10 text-primary rounded-xl flex items-center justify-center flex-shrink-0 text-xl"><i class="fa-solid fa-calendar-check"></i></div><div><h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight text-left">2. Гарантия на работы 24 месяца</h3><p class="text-gray-600 leading-relaxed text-left">Мы не пропадаем после сдачи объекта. Если в течение двух лет возникнет любой вопрос — мы приедем и решим его за свой счёт в течение 48 часов.</p></div></div>
+                        <div class="flex items-start gap-5"><div class="w-12 h-12 bg-primary bg-opacity-10 text-primary rounded-xl flex items-center justify-center flex-shrink-0 text-xl"><i class="fa-solid fa-house-circle-check"></i></div><div><h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight text-left">3. Материальная ответственность</h3><p class="text-gray-600 leading-relaxed text-left">Мы отвечаем за сохранность вашего дома. Все работы по электрике и герметизации выполняются строго по регламенту с фотофиксацией.</p></div></div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/5"><div class="bg-gray-50 rounded-[40px] border-2 border-dashed border-gray-200 aspect-[3/4] flex items-center justify-center relative shadow-inner"><span class="text-gray-300 italic text-center px-10">Фото вашего договора с печатью</span></div></div>
+            </div>
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-16 uppercase tracking-tight">С кем вы будете работать</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mb-16">
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Иван Алексеев</h4><p class="text-gray-500 text-sm">Инженер-технолог</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Дмитрий Волков</h4><p class="text-gray-500 text-sm">Главный мастер</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Артем Соколов</h4><p class="text-gray-500 text-sm">Плиточник</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Михаил Белов</h4><p class="text-gray-500 text-sm">Электрик</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Олег Николаев</h4><p class="text-gray-500 text-sm">Маляр</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Сергей Павлов</h4><p class="text-gray-500 text-sm">Гипсокартонщик</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Елена Смирнова</h4><p class="text-gray-500 text-sm">Дизайнер</p></div>
+                    <div class="team-card group"><div class="bg-gray-100 rounded-3xl aspect-square mb-4 overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-500"><span class="absolute inset-0 flex items-center justify-center text-gray-300 italic text-xs px-2">Фото сотрудника</span></div><h4 class="font-bold text-gray-900 text-lg leading-tight">Виктор Морозов</h4><p class="text-gray-500 text-sm">Краснодеревщик</p></div>
+                </div>
+                <button class="bg-primary text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition shadow-xl shadow-green-200 w-full sm:w-auto">Узнать стоимость ремонта</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 lg:py-24 bg-gray-50 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12"><h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">Ответы на частые вопросы</h2><p class="text-lg md:text-xl text-gray-600 font-medium">Вот что спрашивают наши клиенты:</p></div>
+            <div class="space-y-4">
+                <div class="faq-item bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden cursor-pointer" onclick="toggleFaq(this)"><div class="p-6 lg:p-8 flex items-center justify-between"><h3 class="text-lg lg:text-xl font-bold text-gray-900 pr-4">1. В доме не будет душно?</h3><div class="faq-icon w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 transition-transform duration-300"><i class="fa-solid fa-chevron-down"></i></div></div><div class="faq-content px-6 lg:px-8"><p class="text-gray-600 leading-relaxed">Чтобы вам всегда дышалось легко, мы интегрируем систему микропроветривания. Вы получаете свежий воздух 24/7 без сквозняков и лишних трат на обогрев</p></div></div>
+                <div class="faq-item bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden cursor-pointer" onclick="toggleFaq(this)"><div class="p-6 lg:p-8 flex items-center justify-between"><h3 class="text-lg lg:text-xl font-bold text-gray-900 pr-4">2. А если через год на стенах появятся трещины?</h3><div class="faq-icon w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 transition-transform duration-300"><i class="fa-solid fa-chevron-down"></i></div></div><div class="faq-content px-6 lg:px-8"><p class="text-gray-600 leading-relaxed">Мы используем эластичные ленты и специальные шпаклевки, которые «дышат» вместе с домом. Ваши стены останутся идеально ровными даже через 5 лет после заезда</p></div></div>
+                <div class="faq-item bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden cursor-pointer" onclick="toggleFaq(this)"><div class="p-6 lg:p-8 flex items-center justify-between"><h3 class="text-lg lg:text-xl font-bold text-gray-900 pr-4">3. Дерево под отделкой не начнет гнить?</h3><div class="faq-icon w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 transition-transform duration-300"><i class="fa-solid fa-chevron-down"></i></div></div><div class="faq-content px-6 lg:px-8"><p class="text-gray-600 leading-relaxed">Главная причина гниения — влага из комнат, попавшая в стыки панелей. Мы создаем 100% герметичный внутренний контур. Конденсату просто некуда деться, поэтому дерево остается сухим и прочным на десятилетия</p></div></div>
+                <div class="faq-item bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden cursor-pointer" onclick="toggleFaq(this)"><div class="p-6 lg:p-8 flex items-center justify-between"><h3 class="text-lg lg:text-xl font-bold text-gray-900 pr-4">4. Почему нельзя нанять обычную бригаду отделочников?</h3><div class="faq-icon w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 transition-transform duration-300"><i class="fa-solid fa-chevron-down"></i></div></div><div class="faq-content px-6 lg:px-8"><p class="text-gray-600 leading-relaxed">Мастера «универсалы» часто делают ремонт в СИП-доме как в бетонной квартире. Итог: эхо, трещины на стыках и риск короткого замыкания в деревянных стенах. Мы специализируемся именно на СИП-технологии и знаем об этом всё</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФИНАЛЬНЫЙ ЭКРАН -->
+    <section id="contacts" class="py-16 lg:py-28 bg-white overflow-hidden border-t">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto mb-16 lg:mb-20">
+                <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">Сделайте ваш СИП-дом тихим, безопасным и готовым к жизни уже через 30 дней</h2>
+                <p class="text-lg md:text-xl text-gray-600 font-medium">Начните с бесплатной консультации. Мы подробно вас проконсультируем и подготовим смету, которая не вырастет в процессе работ</p>
+            </div>
+            <div class="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20">
+                <div class="w-full lg:w-1/2">
+                    <div class="bg-gray-50 p-8 lg:p-12 rounded-[40px] shadow-sm border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8 leading-tight">Запишитесь на бесплатную консультацию:</h3>
+                        <form class="space-y-5">
+                            <div><input type="text" placeholder="Введите ваше имя" class="w-full bg-white border border-gray-200 px-6 py-4 rounded-2xl focus:outline-none focus:border-primary transition font-medium"></div>
+                            <div><input type="tel" placeholder="Введите ваш телефон" class="w-full bg-white border border-gray-200 px-6 py-4 rounded-2xl focus:outline-none focus:border-primary transition font-medium"></div>
+                            <button type="submit" class="w-full bg-primary text-white py-5 rounded-2xl font-black text-lg hover:scale-[1.02] transition shadow-lg shadow-green-100">Записаться на консультацию</button>
+                            <p class="text-center text-sm text-gray-400 font-medium">Заявка бесплатная и ни к чему вас не обязывает</p>
+                        </form>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                    <div class="space-y-12 text-center lg:text-left">
+                        <div><p class="text-xl font-bold text-gray-900 mb-4">Остались вопросы? Свяжитесь с нами напрямую:</p><a href="tel:+79999999999" class="text-3xl lg:text-4xl font-black text-primary hover:opacity-80 transition">+7 (999) 999-99-99</a></div>
+                        <div>
+                            <p class="text-xl font-bold text-gray-900 mb-6">Пишите нам в мессенджеры:</p>
+                            <div class="flex items-center justify-center lg:justify-start gap-6">
+                                <a href="#" class="hover:scale-110 transition flex items-center justify-center bg-white p-3 rounded-2xl shadow-md border border-gray-50"><img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="Telegram" class="w-10 h-10 object-contain"></a>
+                                <a href="#" class="hover:scale-110 transition flex items-center justify-center bg-white p-3 rounded-2xl shadow-md border border-gray-50"><img src="image_332700.jpg" alt="Max" class="w-10 h-10 object-contain rounded-md" onerror="this.src='https://via.placeholder.com/40?text=M'"></a>
+                                <a href="#" class="hover:scale-110 transition flex items-center justify-center bg-white p-3 rounded-2xl shadow-md border border-gray-50"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" class="w-10 h-10 object-contain"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10 text-center md:text-left">
+                
+                <!-- Левая часть -->
+                <div class="w-full md:w-1/3">
+                    <p class="text-lg font-bold">Внутренняя отделка СИП-домов</p>
+                    <p class="text-gray-500 text-sm mt-4 italic">Создаем инженерную защиту и уют</p>
+                </div>
+
+                <!-- Посередине -->
+                <div class="w-full md:w-1/3">
+                    <p class="text-gray-400 uppercase tracking-widest text-xs font-bold mb-3">Режим работы:</p>
+                    <p class="text-xl font-medium">Пн-Вс: 9:00 - 22:00</p>
+                </div>
+
+                <!-- Справа -->
+                <div class="w-full md:w-1/3 flex flex-col items-center md:items-end">
+                    <!-- Адаптивный размер шрифта для телефона и запрет переноса строк -->
+                    <a href="tel:+79999999999" class="text-xl sm:text-2xl font-black text-white hover:text-primary transition mb-5 block whitespace-nowrap">
+                        +7 (999) 999-99-99
+                    </a>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:scale-110 transition">
+                            <img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="Telegram" class="w-8 h-8 object-contain bg-white rounded-lg p-1">
+                        </a>
+                        <a href="#" class="hover:scale-110 transition">
+                            <img src="image_332700.jpg" alt="Max" class="w-8 h-8 object-contain rounded-lg" onerror="this.src='https://via.placeholder.com/32?text=M'">
+                        </a>
+                        <a href="#" class="hover:scale-110 transition">
+                            <img src="image_332700.jpg" alt="WhatsApp" class="w-8 h-8 object-contain bg-white rounded-lg p-1" onerror="this.src='https://img.icons8.com/color/48/000000/whatsapp--v1.png'">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-600 text-xs">© 2026. Внутренняя отделка СИП- домов</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiperWorks = new Swiper(".mySwiper", {
+            slidesPerView: 1, spaceBetween: 30, loop: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        });
+
+        const swiperReviews = new Swiper(".reviewsSwiper", {
+            slidesPerView: 1.2, spaceBetween: 20, loop: false,
+            navigation: { nextEl: ".reviews-next", prevEl: ".reviews-prev" },
+            breakpoints: { 640: { slidesPerView: 1.5, spaceBetween: 20 }, 1024: { slidesPerView: 2.5, spaceBetween: 30 } }
+        });
+
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        burgerBtn.addEventListener('click', () => {
+            const isOpen = burgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('open');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            if (!isActive) element.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
